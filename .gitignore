@@ -18,7 +18,6 @@ logs/
 
 # 生成的报告
 reports/
-*.md
 
 # IDE
 .vscode/
