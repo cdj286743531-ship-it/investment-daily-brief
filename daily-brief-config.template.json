@@ -1,0 +1,184 @@
+{
+  "adapters": {
+    "feishu": {
+      "enabled": true,
+      "type": "webhook",
+      "webhook_url": "",
+      "secret": "",
+      "_comment": "飞书群机器人 Webhook - 群设置 → 群机器人 → 自定义机器人"
+    },
+    "wechatwork": {
+      "enabled": false,
+      "type": "webhook",
+      "webhook_url": "",
+      "_comment": "企业微信群机器人 Webhook URL"
+    },
+    "dingtalk": {
+      "enabled": false,
+      "type": "webhook",
+      "webhook_url": "",
+      "secret": "",
+      "_comment": "钉钉群机器人 Webhook"
+    },
+    "email": {
+      "enabled": false,
+      "type": "smtp",
+      "smtp_host": "",
+      "smtp_port": 587,
+      "smtp_user": "",
+      "smtp_password": "",
+      "from_addr": "",
+      "to_addrs": [],
+      "use_tls": true,
+      "_comment": "SMTP 邮件配置"
+    },
+    "slack": {
+      "enabled": false,
+      "type": "webhook",
+      "webhook_url": "",
+      "_comment": "Slack Incoming Webhook URL"
+    },
+    "discord": {
+      "enabled": false,
+      "type": "webhook",
+      "webhook_url": "",
+      "_comment": "Discord Webhook"
+    },
+    "telegram": {
+      "enabled": false,
+      "type": "bot_api",
+      "bot_token": "",
+      "chat_id": "",
+      "_comment": "Telegram Bot"
+    },
+    "teams": {
+      "enabled": false,
+      "type": "webhook",
+      "webhook_url": "",
+      "_comment": "Microsoft Teams Webhook"
+    },
+    "github": {
+      "enabled": false,
+      "type": "github_pages",
+      "github_user": "",
+      "github_repo": "investment-daily",
+      "_comment": "GitHub Pages 部署"
+    }
+  },
+  "cron": [
+    {
+      "name": "投资日报",
+      "schedule": "0 18 * * 1-5",
+      "timezone": "Asia/Shanghai",
+      "output": {
+        "channels": ["feishu"],
+        "file_prefix": "投资日报"
+      }
+    }
+  ],
+  "customization": {
+    "language": "zh-CN",
+    "max_items": 12,
+    "focus_areas": [
+      "A 股市场", "港股市场", "美股市场",
+      "宏观经济", "货币政策", "财政政策",
+      "行业动态", "公司公告", "财报季",
+      "机构观点", "投行评级", "目标价调整",
+      "IPO 与并购", "指数调整", "ETF 动态"
+    ],
+    "vendor_priority": {
+      "tier1": [
+        "中国证监会", "中国人民银行", "国家统计局",
+        "SEC", "Federal Reserve", "Bloomberg",
+        "Reuters", "Wind", "财联社"
+      ],
+      "tier2": [
+        "高盛", "摩根士丹利", "摩根大通", "中金公司",
+        "中信证券", "华泰证券", "国泰君安",
+        "嘉盛集团", "富途证券", "老虎证券"
+      ]
+    },
+    "stock_focus": {
+      "indices": [
+        "上证指数", "深证成指", "创业板指", "科创 50",
+        "恒生指数", "恒生科技",
+        "标普 500", "纳斯达克 100", "道琼斯工业"
+      ],
+      "sectors": [
+        "科技", "金融", "消费", "医药",
+        "新能源", "半导体", "人工智能", "商业航天"
+      ],
+      "themes": [
+        "AI 算力", "数据要素", "低空经济", "商业航天",
+        "高股息", "中特估", "国产替代"
+      ]
+    },
+    "search_keywords": {
+      "cn": [
+        "A 股 收盘 涨跌",
+        "港股 恒生指数 收盘",
+        "央行 逆回购 MLF LPR",
+        "证监会 政策 发布",
+        "财报 业绩 超预期",
+        "机构 评级 目标价",
+        "并购 重组 IPO"
+      ],
+      "en": [
+        "S&P 500 NASDAQ close",
+        "Fed interest rate decision",
+        "SEC filing earnings",
+        "Goldman Sachs Morgan Stanley rating",
+        "IPO merger acquisition"
+      ]
+    },
+    "exclude_sources": [
+      "自媒体", "搬运号", "标题党",
+      "无来源转述", "财经谣言"
+    ],
+    "source_priority": [
+      "官网", "官方公告", "官方文档",
+      "交易所公告", "央行官网", "统计局",
+      "财报原文", "分析师报告原文",
+      "财联社", "Reuters", "Bloomberg"
+    ]
+  },
+  "output_format": {
+    "sections": [
+      {
+        "name": "市场概览",
+        "content": "主要指数收盘、涨跌、成交量"
+      },
+      {
+        "name": "热点板块",
+        "content": "当日领涨/领跌板块及驱动因素"
+      },
+      {
+        "name": "宏观动态",
+        "content": "政策、利率、经济数据"
+      },
+      {
+        "name": "公司动态",
+        "content": "财报、并购、高管变动、价格调整"
+      },
+      {
+        "name": "机构观点",
+        "content": "投行评级、目标价调整、研报摘要"
+      },
+      {
+        "name": "风险提示",
+        "content": "黑天鹅、地缘风险、市场风险"
+      },
+      {
+        "name": "未来一周事件",
+        "content": "重要经济数据、财报、会议"
+      },
+      {
+        "name": "策略建议",
+        "content": "短期和中期投资策略"
+      }
+    ],
+    "markdown_template": "investment-daily-template.md",
+    "include_links": true,
+    "include_timestamp": true
+  }
+}
